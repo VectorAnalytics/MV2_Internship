@@ -14,5 +14,5 @@ https://github.com/VectorAnalytics/MV2_Internship/blob/master/BodyArmorPatents_1
 
 ## Task (Download and convert text files to csv that contains CPC code data parsed as required for project)
 
-The USPTO's CPC master classification files contain a list of all CPC technology codes used on a patent and the position (first, last, inventive or additive) of each CPC on the patent. This is the information I need to build my first network. The files are available in XML or txt in bulk at this location (patents are saved in sequential files of 100K patents, all available in a zip folder to download): https://bulkdata.uspto.gov/data2/patent/classification/cpc/
+The USPTO's CPC master classification files contain a list of all CPC technology codes used on a patent and the symbol position (first or last) and the classification value code (inventive or additive) of each CPC on the patent. This is the information I need to build my first network. The files are available in XML or txt in bulk at this location (patents are saved in sequential files of 100K patents, all available in a zip folder to download): https://bulkdata.uspto.gov/data2/patent/classification/cpc/
 
