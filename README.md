@@ -11,3 +11,8 @@ This set of 181 armor patents was refined by reading each patent title, and ensu
 https://github.com/VectorAnalytics/MV2_Internship/blob/master/BodyArmorPatents_111.xlsx
 
 **Note:** this is a basic "search, copy, paste" method to generate a base set of patents from the USPTO's free online website. I'm able to develop a base set of patents using this method, but can only capture the patent number and the patent title from the USPTO's website. This is enough information to generate my first network analysis, based on patent technology codes. But I will need to secure access to more robust patent search functionality to gather patent assignee information for subsequent network analyses.
+
+## Task (Download and convert text files to csv that contains CPC code data parsed as required for project)
+
+The USPTO's CPC master classification files contain a list of all CPC technology codes used on a patent and the position (first, last, inventive or additive) of each CPC on the patent. This is the information I need to build my first network. The files are available in XML or txt in bulk at this location (patents are saved in sequential files of 100K patents, all available in a zip folder to download): https://bulkdata.uspto.gov/data2/patent/classification/cpc/
+
