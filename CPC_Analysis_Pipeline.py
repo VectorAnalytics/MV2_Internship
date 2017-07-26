@@ -110,9 +110,9 @@ mg_pairs_df = pd.merge(left=first_df,right=later_df, left_on='pat_num', right_on
 #   (dont want nodes edging to themselves).
 mg_unique_pairs_df=mg_pairs_df[mg_pairs_df.fmain_group != mg_pairs_df.lmain_group]
 #Get a count of the pairs
-network_df = mg_unique_pairs_df.groupby(['fmain_group','lmain_group']).size().reset_index().rename(columns={0:'count'})
+network_all_df = mg_unique_pairs_df.groupby(['fmain_group','lmain_group']).size().reset_index().rename(columns={0:'count'})
 #Want to keep node pairs with edge count greater than 19.
-network_df=network_df[(network_df['count'] > 19)]
+network_df=network_all_df[(network_all_df['count'] > 19)]
 #Rename columns so dataframe can be imported into gephi as an edge table.
 network_df.rename(columns = {'fmain_group':'source', 'lmain_group':'target', 'count':'weight' }, inplace=True)
 #Write final df to csv file.
