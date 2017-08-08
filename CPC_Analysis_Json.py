@@ -115,15 +115,15 @@ network_all_df = mg_unique_pairs_df.groupby(['fmain_group','lmain_group']).size(
 network_df=network_all_df[(network_all_df['count'] > 19)]
 #Rename columns so dataframe can be imported into gephi as an edge table.
 network_df.rename(columns = {'fmain_group':'source', 'lmain_group':'target', 'count':'weight' }, inplace=True)
-print(network_df)
+#print(network_df)
 #Bin the links based on weights into 10 bins so the D3 visualization has a "normalized" 'value'.
 #Tried several methods, pd.qcut yielded best results. pd.cut yielded all 1's.
 #Normalizing between 0 and 1 was did not yeild anything I could work with.
 labels=[1,2,3,4,5,6,7,8,9,10]
 network_df['value']=pd.qcut(network_df['weight'], 10, labels=labels) 
-print (network_df)
+#print (network_df)
 links_df=network_df.drop('weight', axis=1)
-print (links_df)
+#print (links_df)
 #Write final df to csv file.
 #network_df.to_csv('/Users/Marcia/OneDrive/MV2_Internship/DS1_Edges_Table.csv', index=False)
 #Create nodes dataframe (where id=node name and group is defined for each node).
@@ -138,7 +138,17 @@ all_nodes=pd.concat([source_df,target_df],axis=0)
 unique_nodes=all_nodes.drop_duplicates(keep='first')
 #Convert unique_nodes back into a dataframe.
 nodes_df=pd.DataFrame(unique_nodes, columns=['id'])
+#print(nodes_df)
+#Create a group assignment based on CPC section - 1 digits
+nodes_df['group_alpha']=nodes_df.id.str[:1]
+#change group to a number
+nodes_df['group'] = 1
+#nodes_df.loc[nodes_df['group_alpha'] = 'B', 'group'] = 2
+
 print(nodes_df)
-#Create a group assignment based on CPC class - 3 digits
-nodes_df['group']=nodes_df.id.str[:4]
-print(nodes_df)
+#Get a count of the unique groups.
+count = nodes_df.groupby(['group']).size().reset_index().rename(columns={0:'count'})
+#print(count)
+#Save nodes and links df's to json files.
+nodes_df.to_json('/Users/Marcia/OneDrive/MV2_Internship/nodes.json', orient = 'records')
+#links_df.to_json('/Users/Marcia/OneDrive/MV2_Internship/links.json', orient = 'records')
